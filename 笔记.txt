@@ -1,0 +1,342 @@
+用户  组   tar NTP cron  find  grep  权限  归属  LDAP  家目录漫游(NFS)  分区  LVM逻辑卷  shall脚本（变量，if,for)  firewall
+聚合连接  用户环境  SElinux  samba  seliunx布尔值  NFS
+ PATH  FTP  wc-l httpd（web页面）  动态页面      iscsi（虚拟内存）  数据库  dhcp  DNS   pxe  rsync(同步）
+
+
+yum provides  */pxelinux.0  #查询什么软件包产生pxelinux.0
+
+VirtualHost *:80>
+    ServerName server0.example.com
+		DocumentRoot /var/www/html
+</VirtualHost>
+
+
+# vim /etc/httpd/conf.d/www.conf
+//该文件不存在，需要手动创建
+<VirtualHost *:80>
+    ServerName www0.example.com
+		DocumentRoot /var/www/dachui
+</VirtualHost>
+# mkdir /var/www/dachui
+# vim /var/www/dachui/index.html
+大腿打退大腿
+# systemctl  restart httpd
+ 
+
+
+yum clean all 
+
+
+useradd -G tarena nsd01
+gpasswd -a nsd01 tarena
+
+
+
+检测防火墙是否关闭，SELinux状态
+
+[root@svr7 ~]# getenforce 
+
+[root@svr7 ~]# systemctl status firewalld
+
+
+
+[root@room9pc01 ~]# yum repolist
+[root@room9pc01 ~]# yum -y install  bind  bind-chroot
+[root@room9pc01 ~]# vim /etc/named.conf
+options {
+        directory       "/var/named";
+        forwarders  {  172.40.1.10;  };
+};
+       
+
+  作用：加速解析过程，让客户端最快得到结果
+
+                       
+• 方式1:全局转发
+– 将请求转发给指定的公共DNS(其他缓存DNS),请求递归服务
+
+
+• 方式2:根域迭代
+– 依次向根、一级、二级......域的DNS服务器迭代
+
+[root@room9pc01 ~]# systemctl restart named
+客户端：虚拟机A
+[root@svr7 /]# nslookup www.360.com 192.168.4.254
+
+
+ls -l  /root         #显示目录内容子文档的详细属性
+
+[root@A tom]#  ls -ld  /root        #显示目录本身的详细属性
+ cat /etc/redhat-release     查看系统版本的文件
+
+挂载就是往这目录放东西
+
+
+  authconfig-gtk  showmount  -e  lvextend -L 18G /dev/systemvg/mylv   resize2fs
+########################################################
+  *显示/root的全部内容，包括隐藏文档  ls -A /root
+  显示/bin/bash程序，详细属性
+  6. 显示/dev/cdrom光驱设备，详细属性  ls -l gos
+
+ 1. 在根目录下创建目录结构/rhel7/dvd
+
+  *2. 利用图形将光盘文件rhel-server-7.4-x86_64-dvd.iso放入光驱设备中
+
+  3. 将光驱设备挂载到/rhel7/dvd目录，以/rhel7/dvd目录作为其访问点
+
+  4. 查看/rhel7/dvd/Packages目录内容    333
+
+  5. 将/rhel7/dvd/Packages目录中以vsftpd开头的软件包，拷贝到/opt下
+  find /rhel7/dvd/Packages/ -name "vsftpd*" -exec cp {} /opt \;
+
+ 显示/etc目录下所有已tab结尾的文件
+
+查看红帽系统版本
+
+*利用find查找所有用户 student 拥有的必须是文件,把它们拷贝到 /root/findfiles/ 文件夹中
+
+*利用find查找/boot/ 目录下为快捷方式
+
+– 将此配置为虚拟机 server0 的默认软件仓库(那个）
+
+查看主机名将显示结果追加到/root/version.txtecho
+
+2）检查/etc/passwd、/etc/shadow文件的最后一行
+
+
+
+ls -l 目录    查看目录里面内容的详细属性
+ls -ld 目录   查看目录本身的详细属性
+ls -A  目录   显示这个目录的所以内容（隐藏的和不隐藏的）
+
+cp:可以在复制时，改变源文件在目标路径下的名字
+
+. 代表当前路径
+   
+  yum remove 软件名  （卸载） -y 有
+
+  yum clean all  yum repolist  清空再从新读
+
+
+
+route   查看网关地址
+
+firewall  永久  原
+
+grep '^root'  /etc/passwd
+ls /etc/passwd/root*
+
+
+管道只有第一个有参数  | 后面没有
+
+修改默认区域   #查看public区域规则   #为区域中添加httpd服务
+
+ #查看public区域规则    重新加载防火墙配置
+################################################
+服务端：Linux只是平台，服务的是Linux系统上一款软件，服务端软件,
+classroom.example.com  NTP服务器
+
+客户端：  客户端软件  虚拟机server0.example.com，安装chrony客户端软件
+useradd tom
+usermod -u 1300 -d /opt/tom -s /sbin/nologin tom
+
+useradd-u 1300 -d /opt/tom -s /sbin/nologin tom
+
+
+LADP  samba  firewall 对ip的开放与阻止
+   
+u= 创建者（目录，文件）
+g=创建者的基本组
+
+setfacl -x  删除指定用户的acl
+setfacl -b  文档      删除目录所有的acl
+
+  nfs-utils  按软件包，修改配置（即目录，谁能看和权限）
+  查看用 showmount -e  ip  挂载
+  
+  vgdisplay myvg（卷组）      vgchange -s 1M myvg
+   查看pe                      修改
+
+###########################################################
+   脚本：绝对路径就是运行这个脚本，（把一堆命令写入运行脚本就像当按回车）
+可以运行文本文件，可以实现某种功能
+• #! 环境声明（声明下列可执行代码用什么程序翻译）
+ • # 注释文本
+ • 可执行代码
+[root@server0 ~]# a=rhel     ${变量名}
+[root@server0 ~]# echo $a    变量      变量名=变化的值
+read  ：产生交互的方式，将用户从键盘上的输入，赋予一个变量来储存
+        位置变量
+#!/bin/bash               /root/cc.txt /etc/passwd   6
+cat -n $1 | head -$2
+ #!/bin/bash
+ echo $1
+ echo $2
+ echo $3
+  echo $?   程序退出后的状态值,0表示上一条命令成功,其他值不成功
+3######################################################
+
+ gt  ge  eq  ne  lt  le
+
+cat /opt/1.txt /etc 2> /opt/a.txt
+
+**********************************************************
+ samba: //172.25.0.11/common    /mnt/nsd    cifs defaults,user=harry,pass=123,_netdev   0  0
+  nfs:  172.25.0.11:/public  /mnt/nfs  nfs  defaults,_netdev   0  0
+
+
+nds 配置文件
+
+setsebool -P samba_export_all_rw=on
+
+echo nameserver 192.168.4.7 > /etc
+
+nmcli  con  mod  eth0  ipv4.dns  192.168.4.7
+nmcli  con  up  eth0
+
+
+ACL  在路由建立匹配规则（谁进谁不能通过）再进入接口执行
+
+步骤五：在R1上查看相关的ACL信息
+1.tarena-R1#show ip access-lists
+
+R1上配置扩展访问控制列表，PC1仅允许到Web Server的HTTP服务（不允许访问其他服务），PC2、PC3无限制
+1.tarena-R1(config)#access-list 100 permit tcp host 192.168.1.1 host 192.168.4.1 eq 80
+
+2.tarena-R1(config)#access-list 100 deny ip host 192.168.1.1 host 192.168.4.1
+
+3.tarena-R1(config)#access-list 100 permit ip 192.168.1.0 0.0.0.255 host 192.168.4.1
+
+4.tarena-R1(config)#interface fastEthernet 0/0
+
+5.tarena-R1(config-if)#ip access-group 100 in
+
+
+
+
+
+
+
+
+
+
+
+
+########################################################3###3
+
+                      网络
+
+1：1）线序
+T568A：
+白绿、绿、白橙、蓝、白蓝、橙、白棕、棕
+T568B：
+白橙、橙、白绿、蓝、白蓝、绿、白棕、棕 
+
+接口加入vlan
+1）进入将要加入vlan的接口然后输入
+switchport access vlan 3
+2）、同时将多个接口加入vlan
+全局： interface range f0/1 – 10
+switchport access vlan  2将1-10口同时加入vlan2
+
+5、查看vlan信息
+特权：show  vlan 
+五、trunk中继链接
+1、作用：实现交换机之间的单一链路传递多个vlan的信息
+1）接入链路:  可以承载1个 vlan
+
+2）中继链路：可以承载多个 vlan
+
+switchport  mode  trunk(直接配置为trunk
+7、在trunk链路上移除某vlan 
+进入trunk接口：switchport trunk allowed vlan remove 3中继链路不允许传送vlan 3的数据
+8、在trunk链路上 添加某vlan 
+进入trunk接口：switchport trunk allowed vlan  add  3
+
+查看路由表
+特权：show  ip  route
+全局：ip  routing  启用路由
+4）、配置路由接口
+进入接口：no  switchport 
+
+
+
+以太通道：  进入2个接口，channel-group 1 mode ong
+
+3）在三层交换机上配置Trunk并指定接口封装为802.1q
+接口模式：switchport  trunk  encapsulation  dot1q 
+switchport  mode  trunk
+
+设置主根，次根    （spanning-tree 10 root primary,  spanning-tree 10 root s
+查看生成树的配置
+特权：show  spanning-tree  vlan  1
+
+配置HSRP使指定路由为活越,备份路由。 
+进入vlan，配置ip(standby 10 ip 192.168.10.254)配置优先级（standby 10 priority 105) 设置抢先权（standby 10 preempt)               3、查看HSRP摘要信息            05
+特权： show  standby  brief
+
+开启动态路由，并广播（router ospf 1, network) 查看（show ip route)
+  default-information originate(告诉表明自己有默认路由）
+
+服务器静态影射      （ip nat inside source static 192.168.40.1
+                                                    静态    
+ 100.0.0.3)   设置路由进口（进入端口，ip nat inside),设置路由出口（进入
+
+端口，ip nat outside)
+
+全局：access-list  1  deny  192.168.1.1  0.0.0.0
+全局：access-list  1  permit  192.168.1.0  0.0.0.255
+
+2、将ACL应用于接口
+接口模式：ip  access-group  列表号 in或out
+
+3、删除已建立的访问控制列表
+全局：no  access-list 列表号
+4、接口上取消ACL
+接口模式：no  ip  access-group  列表号in 或out
+5、查看访问控制列表
+特权：show  access-lists
+
+access-list 101 deny tcp 192.168.1.0 0.0.0.255 host 192.168.2.2  eq  80
+（拒绝192.168.1.0网段访问192.168.2.2的TCP的80端口）
+全局：access-list  101  permit  ip  any  any（允许访问所有
+
+nat
+Ip nat inside source static 192.168.1.1 61.159.62.131
+在内外接口上启用NAT：
+进入出口配置：ip 　nat 　outside
+进入入口配置：ip 　nat 　inside 
+端口映射：
+ip nat inside source static tcp 192.168.1.6 80 61.159.62.133 80 
+        04
+pat
+全局：ip nat inside source list 1 interface f0/1 overload
+
+
+11  7叶  8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
